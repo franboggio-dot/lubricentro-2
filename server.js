@@ -13,7 +13,6 @@ const contactRoutes = require('./routes/contact');
 const app = express();
 
 // Security middlewares
-// COMPLETELY DISABLED FOR DEBUGGING
 // app.use(helmet());
 // app.use(helmet.contentSecurityPolicy({
 //     useDefaults: true,
@@ -50,45 +49,35 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Custom Routes
 app.use('/api/auth', authRoutes);
-app.use('/api', contactRoutes);
+app.use('/api/contact', contactRoutes);
 
-// Fallback error handler
+// Database connection
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('PostgreSQL (placeholder for MongoDB) connected...');
+    } catch (err) {
+        console.error('Error connecting to DB:', err.message);
+        // Dont exit process, let vercel keep running the server if DB is down
+    }
+};
+
+connectDB();
+
+// Global error handler
 app.use((err, req, res, next) => {
-    console.error(err.stack); // For development
-    res.status(err.status || 500).json({
-        error: process.env.NODE_ENV === 'production'
-            ? 'Error interno del servidor.'
-            : err.message
-    });
+    console.error(err.stack);
+    res.status(500).json({ error: 'Internal Server Error' });
 });
 
-const PORT = process.env.PORT || 5000;
-const DB_URI = process.env.MONGO_URI;
-
-// Connect to MongoDB (non-blocking for server startup in serverless)
-if (DB_URI) {
-    mongoose.connect(DB_URI)
-        .then(() => {
-            console.log('Connected to MongoDB');
-        })
-        .catch(err => {
-            console.error('\n======================================================');
-            console.error('WARNING: MongoDB connection failed.');
-            console.error(err.message);
-            console.error('The backend APIs will return errors, but the frontend will load.');
-            console.error('======================================================\n');
-        });
-} else {
-    console.warn('WARNING: MONGO_URI is missing. Database features will be disabled.');
-}
-
-// Start Express server ONLY if not being imported (for local development)
-if (require.main === module) {
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-        console.log(`Open http://localhost:${PORT} in your browser.`);
-    });
-}
-
-// Export the app for Vercel
+// For Vercel, the app needs to be exported
 module.exports = app;
+
+// Local development
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
