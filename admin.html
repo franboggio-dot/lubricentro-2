@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - El Canal Lubricentro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <!-- Login Section -->
+    <div id="loginSection" class="login-container">
+        <div class="admin-card">
+            <h2 class="card-title">Portal Administrador</h2>
+            <form id="adminLoginForm">
+                <div class="form-group-admin">
+                    <input type="text" id="username" placeholder="Usuario" required>
+                </div>
+                <div class="form-group-admin">
+                    <input type="password" id="password" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="btn-admin" id="loginBtn">Ingresar</button>
+                <div id="loginError" style="color: #ef4444; margin-top: 10px; text-align: center; font-size: 0.9rem;">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboardSection" class="dashboard-container">
+        <aside class="sidebar">
+            <h2 style="font-family: 'Rajdhani', sans-serif; color: #fff;">El Canal Admin</h2>
+            <ul class="nav-admin">
+                <li class="active" id="navContacts">Contacto General</li>
+                <li id="navQuotes">Cotizaciones Flotas</li>
+            </ul>
+            <button id="logoutBtn" class="logout-btn">Cerrar Sesión</button>
+        </aside>
+
+        <main class="main-content">
+            <h1 id="viewTitle" style="font-family: 'Rajdhani', sans-serif;">Mensajes de Contacto</h1>
+
+            <div id="tableContainer">
+                <!-- JS injects tables here -->
+                <p>Cargando datos...</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
