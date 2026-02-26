@@ -14,6 +14,8 @@ const app = express();
 
 // Security middlewares
 app.use(helmet());
+// Temporary disable CSP for debugging asset loading
+/*
 app.use(helmet.contentSecurityPolicy({
     useDefaults: true,
     directives: {
@@ -24,6 +26,7 @@ app.use(helmet.contentSecurityPolicy({
         "img-src": ["'self'", "data:", "https://images.unsplash.com", "https://maps.gstatic.com", "https://maps.googleapis.com"]
     }
 }));
+*/
 
 // CORS setup
 app.use(cors({
