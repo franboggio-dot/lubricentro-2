@@ -1,0 +1,135 @@
+/* Admin specific design - Premium Minimalist */
+:root {
+    --bg-admin: #0c0a09;
+    --card-admin: #1c1917;
+    --accent-admin: #8b5cf6;
+    --text-admin: #f5f5f4;
+    --border-admin: #292524;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-admin);
+    color: var(--text-admin);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Login */
+.login-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-card {
+    background: var(--card-admin);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-admin);
+    width: 100%;
+    max-width: 400px;
+}
+
+.card-title {
+    font-family: 'Rajdhani', sans-serif;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group-admin { margin-bottom: 20px; }
+
+.form-group-admin input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border-admin);
+    background: #000;
+    color: #fff;
+}
+
+.btn-admin {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent-admin);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Dashboard */
+.dashboard-container {
+    display: none; /* Shown after login */
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+}
+
+.sidebar {
+    background: #000;
+    padding: 40px 20px;
+    border-right: 1px solid var(--border-admin);
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-admin {
+    list-style: none;
+    margin-top: 40px;
+}
+
+.nav-admin li {
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.nav-admin li:hover, .nav-admin li.active {
+    background: var(--border-admin);
+    color: var(--accent-admin);
+}
+
+.logout-btn {
+    margin-top: auto;
+    background: transparent;
+    color: #ef4444;
+    border: 1px solid #ef4444;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.main-content { padding: 50px; }
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+th {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 2px solid var(--border-admin);
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-admin);
+    font-size: 0.9rem;
+}
+
+.badge-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+.badge-new { background: #10b981; color: white; }
