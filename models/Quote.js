@@ -1,35 +1,38 @@
 const mongoose = require('mongoose');
 
-const QuoteSchema = new mongoose.Schema({
+const quoteSchema = new mongoose.Schema({
     empresa: {
         type: String,
-        required: true,
-        trim: true
+        required: [true, 'El nombre de la empresa es obligatorio']
     },
     contacto: {
         type: String,
-        required: true,
-        trim: true
-    },
-    telefono: {
-        type: String,
-        required: true
+        required: [true, 'El nombre del contacto es obligatorio']
     },
     email: {
         type: String,
-        required: true,
-        lowercase: true
+        required: [true, 'El correo electrónico es obligatorio'],
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Por favor agregá un correo válido']
     },
-    cantidadFlota: {
+    telefono: {
+        type: String,
+        required: [true, 'El teléfono es obligatorio']
+    },
+    flotaSize: {
         type: Number,
-        required: true
+        required: [true, 'El tamaño de la flota es obligatorio']
     },
     tipoServicio: {
         type: String,
-        required: true
+        required: [true, 'El servicio necesitado es obligatorio']
     },
     mensaje: {
         type: String
+    },
+    estado: {
+        type: String,
+        enum: ['Pendiente', 'Cotizado', 'Cerrado'],
+        default: 'Pendiente'
     },
     createdAt: {
         type: Date,
@@ -37,4 +40,4 @@ const QuoteSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Quote', QuoteSchema);
+module.exports = mongoose.model('Quote', quoteSchema);

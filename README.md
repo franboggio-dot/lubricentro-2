@@ -33,6 +33,7 @@ Combina un Frontend puro y ultra-rápido con un Backend moderno y seguro en Node
 ### Modo Desarrollo
 Este modo utiliza `nodemon` para reiniciar el servidor automáticamente ante los cambios en el código backend.
 ```bash
+npm install -g nodemon
 npm run dev
 ```
 
@@ -60,9 +61,13 @@ La aplicación quedará disponible en `http://localhost:5000` (El servidor de No
 
 ## 📁 Estructura del Código
 
-- `/` (Raíz): Contiene `index.html`, `admin.html` y el Entry point del backend `server.js`
-- `/css`: Hojas de estilo Vanilla CSS.
-- `/js`: Lógica Frontend Vanilla JS (`main.js`, `contact.js`, `admin.js`).
+- `/`: Entry point del backend `server.js` y configuración de Vercel.
+- `/public`: Contiene todos los archivos estáticos servidos al cliente.
+  - `index.html`: Landing page principal.
+  - `admin.html`: Panel de administración.
+  - `/css`: Hojas de estilo Vanilla CSS (`styles.css`, `admin.css`).
+  - `/js`: Lógica Frontend Vanilla JS (`main.js`, `contact.js`, `admin.js`).
+  - `/img`: Imágenes y logo del proyecto.
 - `/routes`: Rutas de la API Express (Autenticación y Formularios).
 - `/models`: Schemas de Mongoose para MongoDB.
 - `/middleware`: Control de acceso con JWT y validaciones.
